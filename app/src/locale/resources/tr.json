@@ -36,5 +36,10 @@
   "jobList": {
     "welcome": "Hoşgeldiniz,",
     "search": "Ara"
+  },
+  "jobCard": {
+    "company": "Şirket",
+    "salary": "Maaş",
+    "applied": "Başvuruldu"
   }
 }

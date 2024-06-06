@@ -1,4 +1,6 @@
 export interface JobResponse {
+  nextCursor: number | null | undefined;
+  previousCursor: number | null | undefined;
   data: Jobs[];
   meta: Meta;
 }
@@ -21,8 +23,6 @@ export interface Meta {
 }
 
 export interface JobParams {
-  page: number;
-  perPage: number;
   search?: {
     query: string;
     field?: string;
@@ -31,4 +31,5 @@ export interface JobParams {
     field?: string;
     direction?: string;
   };
+  pageParam?: number;
 }

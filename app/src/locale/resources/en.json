@@ -36,5 +36,10 @@
   "jobList": {
     "welcome": "Welcome,",
     "search": "Search"
+  },
+  "jobCard": {
+    "company": "Company",
+    "salary": "Salary",
+    "applied": "Applied"
   }
 }
