@@ -6,6 +6,8 @@ import { Text } from ".";
 import { moderateScale, scale, verticalScale } from "@/utils/WindowSize";
 import { colors } from "@/theme";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { navigate } from "@/navigation/navigationUtilities";
+import { RouteNames } from "@/navigation/RouteNames";
 
 interface JobsCardProps {
   job: Jobs;
@@ -23,7 +25,14 @@ const JobsCard = ({ job, index, appliedJobs }: JobsCardProps) => {
   }, [appliedJobs, job.id]);
 
   return (
-    <TouchableOpacity key={`${index}-job`}>
+    <TouchableOpacity
+      onPress={() =>
+        navigate(RouteNames.JOBDETAIL, {
+          jobId: job.id,
+        })
+      }
+      key={`${index}-job`}
+    >
       <Image source={Images.jobsCard} style={styles.cardImg} />
       <View style={styles.card}>
         <View style={styles.detail}>

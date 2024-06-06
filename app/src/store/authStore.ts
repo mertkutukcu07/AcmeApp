@@ -1,7 +1,6 @@
 import { axiosInstance } from "@/api/axios/api";
 import { UserInfoResponse } from "@/api/services/auth/types";
 import { AuthStatus } from "@/constants/authStatus";
-
 import { clear, loadString, saveString } from "@/utils/storage";
 import { create } from "zustand";
 type AuthStore = {
@@ -13,6 +12,9 @@ type AuthStore = {
   hydrate: () => void;
   userInfo: UserInfoResponse;
   setUserInfo: (userInfo: UserInfoResponse) => void;
+
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
 };
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -21,6 +23,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
   status: AuthStatus.idle,
   userInfo: {} as UserInfoResponse,
   setUserInfo: (userInfo: UserInfoResponse) => set({ userInfo }),
+  loading: false,
+  setLoading: (loading: boolean) => set({ loading }),
+
   signIn: async (accessToken: string, refreshToken: string) => {
     await saveString("accessToken", accessToken);
     await saveString("refreshToken", refreshToken);
@@ -28,8 +33,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
     axiosInstance.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${accessToken}`;
+    set({ loading: true });
     const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
     set({ userInfo: data });
+    set({ loading: false });
   },
 
   signOut: async () => {
@@ -47,8 +54,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
       axiosInstance.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
+      set({ loading: true });
       const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
       set({ userInfo: data });
+      set({ loading: false });
     } else {
       set({ status: AuthStatus.signOut });
     }

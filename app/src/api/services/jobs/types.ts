@@ -33,3 +33,15 @@ export interface JobParams {
   };
   pageParam?: number;
 }
+
+export interface JobDetailsRequest {
+  id: string;
+}
+
+export interface JobOperationRequest {
+  id: string;
+}
+
+export interface JobOperationResponse {
+  message: string;
+}

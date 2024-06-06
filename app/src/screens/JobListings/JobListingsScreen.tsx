@@ -14,6 +14,8 @@ interface JobListingsScreenProps
 
 const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
   const userInfo = useAuthStore((state) => state.userInfo);
+  const appliedJobs = useAuthStore((state) => state.userInfo.appliedJobs);
+  const loading = useAuthStore((state) => state.loading);
   const [searchText, setSearchText] = React.useState<string>("");
   const { t } = useLanguage();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetJobs({
@@ -28,6 +30,9 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
     }
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <Screen preset="scroll" edges={[]}>
       <Body>
@@ -67,11 +72,7 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
             keyExtractor={(item, index) => `${index}-jobs`}
             renderItem={({ item, index }) => {
               return (
-                <JobsCard
-                  job={item}
-                  index={index}
-                  appliedJobs={userInfo.appliedJobs}
-                />
+                <JobsCard job={item} index={index} appliedJobs={appliedJobs} />
               );
             }}
           />
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(20),
   },
   input: {
-    marginTop: verticalScale(10),
+    marginVertical: verticalScale(10),
   },
   jobsContainer: {
     gap: verticalScale(10),
