@@ -12,7 +12,6 @@ interface LoginScreenProps extends AuthStackScreenProps<RouteNames.LOGIN> {}
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
   const signIn = useAuthStore((state) => state.signIn);
-
   const { mutateAsync: login, isPending } = useLogin({
     onSuccess: (data) => {
       signIn(data?.accessToken, data?.refreshToken);

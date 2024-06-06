@@ -86,6 +86,7 @@ const TextField = (props: TextFieldProps) => {
             icon={leftIcon}
             onPress={handleLeftIconPress}
             style={styles.icon}
+            size={20}
           />
         )}
         <TextInput
