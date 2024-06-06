@@ -8,19 +8,29 @@ import { height, scale, verticalScale } from "@/utils/WindowSize";
 import TextField from "@/components/TextField";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { useGetJobs } from "@/api/services/jobs";
-
+import _ from "lodash";
 interface JobListingsScreenProps
   extends JobStackScreenProps<RouteNames.JOBLISTINGS> {}
-
 const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
   const userInfo = useAuthStore((state) => state.userInfo);
   const appliedJobs = useAuthStore((state) => state.userInfo.appliedJobs);
   const loading = useAuthStore((state) => state.loading);
   const [searchText, setSearchText] = React.useState<string>("");
+  const [searchQuery, setSearchQuery] = React.useState<string>("");
+  const debouncedSearchTerm = React.useCallback(
+    _.debounce((searchText: string) => {
+      setSearchQuery(searchText.toLocaleLowerCase());
+    }, 750),
+    []
+  );
   const { t } = useLanguage();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetJobs({
     variables: {
       pageParam: 1,
+      search: {
+        field: "companyName",
+        query: searchQuery,
+      },
     },
   });
 
@@ -47,12 +57,15 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
         <View style={styles.input}>
           <TextField
             value={searchText}
-            onChangeText={setSearchText}
+            onChangeText={(text) => {
+              setSearchText(text);
+              debouncedSearchTerm(text);
+            }}
             placeholder={t("jobList.search")}
             leftIcon="search"
           />
         </View>
-        <View style={styles.flatList}>
+        <View style={styles.listContainer}>
           <FlatList
             scrollEnabled={!isFetchingNextPage}
             showsVerticalScrollIndicator={false}
@@ -60,6 +73,14 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
             onEndReached={loadMore}
             onEndReachedThreshold={0.3}
             contentContainerStyle={styles.jobsContainer}
+            ListEmptyComponent={() => (
+              <Text
+                text={t("jobList.noJobs")}
+                fontFamily="regular"
+                size="lg"
+                style={styles.notFound}
+              />
+            )}
             ListFooterComponent={() => (
               <View style={styles.footer}>
                 <ActivityIndicator
@@ -98,11 +119,15 @@ const styles = StyleSheet.create({
     gap: verticalScale(10),
     marginVertical: verticalScale(10),
   },
-  flatList: {
-    height: height,
+  listContainer: {
+    height: height - verticalScale(200),
   },
   footer: {
     marginVertical: verticalScale(10),
     marginBottom: verticalScale(20),
+  },
+  notFound: {
+    textAlign: "center",
+    marginTop: height / 5,
   },
 });

@@ -3,7 +3,9 @@
     "login": "Giriş Yap",
     "register": "Kayıt Ol",
     "jobList": "İş Listesi",
-    "jobDetail": "İş Detayı"
+    "jobDetail": "İş Detayı",
+    "appliedJobs": "Başvurulan İşler",
+    "profile": "Profil"
   },
 
   "login": {
@@ -13,7 +15,8 @@
     "password": "Şifre",
     "login": "Giriş Yap",
     "doNotHaveAccount": "Hesabınız yok mu?",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "appliedJobs": "Başvurulan İşler"
   },
   "register": {
     "title": "Hesap Oluştur",
@@ -25,7 +28,20 @@
   },
   "controller": {
     "emailError": "E-posta zorunlu",
-    "passwordError": "Şifre zorunlu ve en az 6 karakter olmalıdır"
+    "passwordError": "Şifre zorunlu ve en az 6 karakter olmalıdır",
+    "nameError": "İsim zorunlu",
+    "surnameError": "Soyisim zorunlu",
+    "phoneError": "Telefon numarası zorunlu",
+    "addressError": "Adres zorunlu",
+    "cityError": "Şehir zorunlu",
+    "countryError": "Ülke zorunlu",
+    "skillError": "Yetenek zorunlu",
+    "companyError": "Şirket adı zorunlu",
+    "positionError": "Pozisyon zorunlu",
+    "institutionError": "Kurum adı zorunlu",
+    "degreeError": "Derece zorunlu",
+    "languageError": "Dil zorunlu",
+    "levelError": "Seviye zorunlu"
   },
   "tab": {
     "jobList": "İş Listesi",
@@ -35,7 +51,8 @@
   },
   "jobList": {
     "welcome": "Hoşgeldiniz,",
-    "search": "Ara"
+    "search": "Ara",
+    "noJobs": "İş bulunamadı"
   },
   "jobCard": {
     "company": "Şirket",

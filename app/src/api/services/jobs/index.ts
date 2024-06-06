@@ -4,6 +4,7 @@ import {
   createQuery,
 } from "react-query-kit";
 import {
+  AppliedJobRequest,
   JobDetailsRequest,
   JobOperationRequest,
   JobOperationResponse,
@@ -22,11 +23,20 @@ export const useGetJobs = createInfiniteQuery<
 >({
   queryKey: [queryKeys.JOBS],
   fetcher: async (req: JobParams, { pageParam }) => {
+    const params: JobParams = {
+      page: pageParam,
+      perPage: 10,
+    };
+
+    if (req.search?.field && req.search?.query) {
+      params.search = {
+        field: req.search.field,
+        query: req.search.query,
+      };
+    }
+
     const { data } = await axiosInstance.get<JobResponse>(`api/jobs`, {
-      params: {
-        page: pageParam,
-        perPage: 10,
-      },
+      params,
     });
     return data;
   },
@@ -72,6 +82,23 @@ export const useWithdrawJob = createMutation<
   mutationFn: async (req: JobOperationRequest) => {
     const { data } = await axiosInstance.post<JobOperationResponse>(
       `api/jobs/${req.id}/withdraw`
+    );
+    return data;
+  },
+});
+
+export const useAppliedJobs = createQuery<
+  Jobs[],
+  AppliedJobRequest,
+  AxiosError
+>({
+  queryKey: [queryKeys.APPLIED_JOBS],
+  fetcher: async (req: AppliedJobRequest) => {
+    const data = await Promise.all(
+      req.appliedJobs.map(async (jobId) => {
+        const { data } = await axiosInstance.get<Jobs>(`api/jobs/${jobId}`);
+        return data;
+      })
     );
     return data;
   },

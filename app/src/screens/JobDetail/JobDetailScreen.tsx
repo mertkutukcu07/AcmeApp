@@ -12,7 +12,6 @@ import { Images } from "@/constants/Images";
 import { moderateScale, scale, verticalScale } from "@/utils/WindowSize";
 import { colors } from "@/theme";
 import { useAuthStore } from "@/store/authStore";
-import { queryClient } from "@/providers/ApiProvider";
 import { queryKeys } from "@/api/keys";
 import { useQueryClient } from "@tanstack/react-query";
 import { goBack } from "@/navigation/navigationUtilities";
@@ -66,7 +65,7 @@ const JobDetailScreen: React.FC<JobDetailScreenProps> = ({ route }) => {
     },
   });
 
-  const disabled = isPending || isWithdrawPending;
+  const disabled = isPending || isWithdrawPending || userInfoPending;
 
   const handleApply = React.useCallback(
     (type: string) => {
@@ -99,8 +98,7 @@ const JobDetailScreen: React.FC<JobDetailScreenProps> = ({ route }) => {
               <Text
                 text={data?.name}
                 size="sm"
-                numberOfLines={1}
-                adjustsFontSizeToFit
+                style={styles.name}
                 fontFamily="semiBold"
               />
               <Text text={data?.companyName} size="sm" fontFamily="light" />
@@ -198,5 +196,8 @@ const styles = StyleSheet.create({
   },
   withdrawButton: {
     backgroundColor: colors.palette.state.warning,
+  },
+  name: {
+    width: scale(200),
   },
 });

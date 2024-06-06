@@ -32,6 +32,8 @@ export interface JobParams {
     direction?: string;
   };
   pageParam?: number;
+  page?: number;
+  perPage?: number;
 }
 
 export interface JobDetailsRequest {
@@ -44,4 +46,8 @@ export interface JobOperationRequest {
 
 export interface JobOperationResponse {
   message: string;
+}
+
+export interface AppliedJobRequest {
+  appliedJobs: string[];
 }
