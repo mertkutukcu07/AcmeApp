@@ -1,9 +1,10 @@
-import { createMutation } from "react-query-kit";
-import { AuthRequest, AuthResponse } from "./types";
+import { createMutation, createQuery } from "react-query-kit";
+import { AuthRequest, AuthResponse, UserInfoResponse } from "./types";
 import { queryKeys } from "@/api/keys";
 import { axiosInstance } from "@/api/axios/api";
 import { AxiosError } from "axios";
 import { Message } from "@/components";
+import { useAuthStore } from "@/store/authStore";
 
 export const useLogin = createMutation<AuthResponse, AuthRequest, AxiosError>({
   mutationKey: [queryKeys.LOGIN],
@@ -39,5 +40,13 @@ export const useRegister = createMutation<
       // @ts-ignore
       message: error.response?.data.message,
     });
+  },
+});
+
+export const useUserInfo = createMutation<UserInfoResponse, void, AxiosError>({
+  mutationKey: [queryKeys.USER_INFO],
+  mutationFn: async () => {
+    const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
+    return data;
   },
 });

@@ -3,7 +3,9 @@
     "login": "Login",
     "register": "Register",
     "jobList": "Job List",
-    "jobDetail": "Job Detail"
+    "jobDetail": "Job Detail",
+    "appliedJobs": "Applied Jobs",
+    "profile": "Profile"
   },
   "login": {
     "title": "Welcome,",
@@ -25,7 +27,20 @@
   },
   "controller": {
     "emailError": "Email is required and must be a valid email",
-    "passwordError": "Password is required"
+    "passwordError": "Password is required",
+    "nameError": "Name is required",
+    "surnameError": "Surname is required",
+    "phoneError": "Phone is required",
+    "addressError": "Address is required",
+    "cityError": "City is required",
+    "countryError": "Country is required",
+    "skillError": "Skills is required",
+    "companyError": "Company is required",
+    "positionError": "Position is required",
+    "institutionError": "Institution is required",
+    "degreeError": "Degree is required",
+    "languageError": "Language is required",
+    "levelError": "Level is required"
   },
   "tab": {
     "jobList": "Job List",
@@ -35,7 +50,8 @@
   },
   "jobList": {
     "welcome": "Welcome,",
-    "search": "Search"
+    "search": "Search",
+    "noJobs": "No jobs found"
   },
   "jobCard": {
     "company": "Company",

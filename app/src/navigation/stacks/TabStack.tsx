@@ -1,4 +1,4 @@
-import { Icon } from "@/components";
+import { Header, Icon } from "@/components";
 import { RouteNames } from "@/navigation/RouteNames";
 import { getFontSize } from "@/hooks/useResponsiveText";
 import { colors } from "@/theme/colors";
@@ -49,11 +49,11 @@ export default function TabStack() {
         name={RouteNames.APPLIEDJOBS}
         component={AppliedJobsScreen}
         options={{
+          header: () => <Header title={t("header.appliedJobs")} />,
           tabBarIcon: ({ color, focused }) => (
             <Icon icon="checkList" color={color} size={20} />
           ),
           tabBarLabel: t("tab.appliedJobs"),
-          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -63,8 +63,9 @@ export default function TabStack() {
           tabBarIcon: ({ color, focused }) => (
             <Icon icon="profile" color={color} size={20} />
           ),
+          header: () => <Header title={t("header.profile")} />,
+
           tabBarLabel: t("tab.profile"),
-          headerShown: false,
         }}
       />
     </Tab.Navigator>

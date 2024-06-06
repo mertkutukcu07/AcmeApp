@@ -1,11 +1,12 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import React from "react";
 import { height, width } from "@/utils/WindowSize";
+import { colors } from "@/theme";
 
 const Loading = () => {
   return (
     <View style={styles.background}>
-      <ActivityIndicator size="large" color={"#fff"} />
+      <ActivityIndicator size="large" color={colors.common.black} />
     </View>
   );
 };
@@ -17,8 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    position: "absolute",
+    backgroundColor: "transparent",
     height: height,
     width: width,
   },
