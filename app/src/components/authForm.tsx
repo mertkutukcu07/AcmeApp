@@ -14,9 +14,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface AuthFormProps {
   isLogin: boolean;
   onSubmit: (data: any) => void;
+  isPending?: boolean;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
+const AuthForm: React.FC<AuthFormProps> = ({
+  isLogin,
+  onSubmit,
+  isPending,
+}) => {
   const { t } = useLanguage();
   const { valueIcon, valueVisibility, toggleValueVisibility } = useShowValue();
   const schema = useMemo(() => schemes(t).AuthSchema, [t]);
@@ -32,34 +37,32 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
     navigate(isLogin ? RouteNames.REGISTER : RouteNames.LOGIN);
   }, [isLogin]);
 
-  const typeSchema = useMemo(
-    () => [
-      {
-        title: isLogin ? "login.title" : "register.title",
-        subtitle: isLogin ? "login.subtitle" : "register.subtitle",
-        email: "login.email",
-        password: "login.password",
-        login: isLogin ? "login.login" : "register.register",
-        register: isLogin ? "login.register" : "register.login",
-        doNotHaveAccount: isLogin
-          ? "login.doNotHaveAccount"
-          : "register.alreadyHaveAccount",
-      },
-    ],
-    [isLogin]
+  const localizedScheme = useMemo(
+    () => ({
+      title: isLogin ? t("login.title") : t("register.title"),
+      subtitle: isLogin ? t("login.subtitle") : t("register.subtitle"),
+      email: t("login.email"),
+      password: t("login.password"),
+      login: isLogin ? t("login.login") : t("register.register"),
+      register: isLogin ? t("login.register") : t("register.login"),
+      doNotHaveAccount: isLogin
+        ? t("login.doNotHaveAccount")
+        : t("register.alreadyHaveAccount"),
+    }),
+    [isLogin, t]
   );
 
   return (
     <Body>
       <View style={styles.titleContainer}>
         <Text
-          text={t(isLogin ? "login.title" : "register.title")}
+          text={localizedScheme.title}
           fontFamily="semiBold"
           color={colors.palette.primary}
           size="big"
         />
         <Text
-          text={t(isLogin ? "login.subtitle" : "register.subtitle")}
+          text={localizedScheme.subtitle}
           color={colors.palette.primary}
           size="lg"
           fontFamily="regular"
@@ -70,8 +73,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              label={t("login.email")}
-              placeholder={t("login.email")}
+              label={localizedScheme.email}
+              placeholder={localizedScheme.email}
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
@@ -87,8 +90,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              label={t("login.password")}
-              placeholder={t("login.password")}
+              label={localizedScheme.password}
+              placeholder={localizedScheme.password}
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
@@ -104,21 +107,20 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
         />
       </View>
       <Button
-        text={t(isLogin ? "login.login" : "register.register")}
+        loading={isPending}
+        text={localizedScheme.login}
         style={styles.button}
         onPress={handleSubmit(onSubmit)}
-        disabled={Object.keys(errors).length > 0}
+        disabled={Object.keys(errors).length > 0 || isPending}
       />
       <View style={styles.bottomContainer}>
         <Text
-          text={t(
-            isLogin ? "login.doNotHaveAccount" : "register.alreadyHaveAccount"
-          )}
+          text={localizedScheme.doNotHaveAccount}
           fontFamily="regular"
           size="md"
         />
         <Button
-          text={t(isLogin ? "login.register" : "register.login")}
+          text={localizedScheme.register}
           style={styles.secondaryButton}
           textStyle={styles.textStyle}
           onPress={handleNavigation}

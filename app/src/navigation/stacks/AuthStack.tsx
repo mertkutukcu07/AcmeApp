@@ -17,7 +17,7 @@ export type AuthStackParamList = {
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthStack = () => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   return (
     <Stack.Navigator initialRouteName={RouteNames.LOGIN}>
