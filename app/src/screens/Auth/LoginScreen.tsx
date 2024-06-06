@@ -1,30 +1,30 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { AuthStackScreenProps } from "@/navigation/stacks/AuthStack";
 import { RouteNames } from "@/navigation/RouteNames";
-import { Body, Button, Screen, Text, TextInput } from "@/components";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { AuthForm, Screen } from "@/components";
+
 import { colors } from "@/theme";
 import { verticalScale } from "@/utils/WindowSize";
-import { navigate } from "@/navigation/navigationUtilities";
-import { useShowValue } from "@/hooks/useShowValue";
-import { Controller, useForm } from "react-hook-form";
-import { schemes } from "@/schemes";
-import { zodResolver } from "@hookform/resolvers/zod";
-import AuthForm from "@/components/authForm";
+import { useLogin } from "@/api/services/auth";
+import { useAuthStore } from "@/store/authStore";
 interface LoginScreenProps extends AuthStackScreenProps<RouteNames.LOGIN> {}
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const signIn = useAuthStore((state) => state.signIn);
 
+  const { mutateAsync: login, isPending } = useLogin({
+    onSuccess: (data) => {
+      signIn(data?.accessToken, data?.refreshToken);
+    },
+  });
   const onSubmit = (data: any) => {
-    console.log(data, "data");
+    login(data);
   };
 
   return (
     <Screen edges={["bottom"]} preset="scroll">
-      <AuthForm isLogin onSubmit={onSubmit} />
+      <AuthForm isLogin onSubmit={onSubmit} isPending={isPending} />
     </Screen>
   );
 };

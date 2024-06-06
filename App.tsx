@@ -16,6 +16,7 @@ import { customFontstoLoad } from "@/theme/typography";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import i18n from "@/locale";
+import Toast from "react-native-toast-message";
 
 export default function App() {
   const [loaded, error] = useFonts(customFontstoLoad);
@@ -44,6 +45,7 @@ export default function App() {
           </APIProvider>
         </LanguageProvider>
       </I18nextProvider>
+      <Toast />
     </SafeAreaProvider>
   );
 }
