@@ -34,7 +34,11 @@ const ScrollScreen: React.FC<ScreenProps> = ({
   ...rest
 }) => (
   <SafeAreaView edges={edges} style={style} {...rest}>
-    <KeyboardAwareScrollView contentContainerStyle={styles.scrollContent}>
+    <KeyboardAwareScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.scrollContent}
+    >
       {children}
     </KeyboardAwareScrollView>
   </SafeAreaView>

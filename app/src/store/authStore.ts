@@ -28,7 +28,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
     axiosInstance.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${accessToken}`;
-    const { data } = await axiosInstance.get<UserInfoResponse>("customer/user");
+    const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
     set({ userInfo: data });
   },
 

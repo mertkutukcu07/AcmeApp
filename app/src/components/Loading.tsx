@@ -1,5 +1,6 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import React from "react";
+import { height, width } from "@/utils/WindowSize";
 
 const Loading = () => {
   return (
@@ -17,5 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+    position: "absolute",
+    height: height,
+    width: width,
   },
 });

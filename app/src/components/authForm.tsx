@@ -75,6 +75,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             <TextInput
               label={localizedScheme.email}
               placeholder={localizedScheme.email}
+              autoCapitalize="none"
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
