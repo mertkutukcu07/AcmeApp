@@ -4,25 +4,40 @@ import {
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
 import { RouteNames } from "./RouteNames";
-import { AuthStack } from "./stacks";
+import { AuthStack, TabStack } from "./stacks";
 import { navigationRef } from "./navigationUtilities";
+import { useAuthStore } from "@/store/authStore";
+import { AuthStatus } from "@/constants/authStatus";
 
 export type AppStackParamList = {
   [RouteNames.AUTHSTACK]: undefined;
+  [RouteNames.TABSTACK]: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = () => {
+  const status = useAuthStore((state) => state.status);
+  console.log(status, "status");
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name={RouteNames.AUTHSTACK}
-        component={AuthStack}
-      />
+      {status === AuthStatus.signIn ? (
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={RouteNames.TABSTACK}
+          component={TabStack}
+        />
+      ) : (
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={RouteNames.AUTHSTACK}
+          component={AuthStack}
+        />
+      )}
     </Stack.Navigator>
   );
 };

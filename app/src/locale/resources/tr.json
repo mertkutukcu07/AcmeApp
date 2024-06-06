@@ -1,7 +1,9 @@
 {
   "header": {
     "login": "Giriş Yap",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "jobList": "İş Listesi",
+    "jobDetail": "İş Detayı"
   },
 
   "login": {
@@ -24,5 +26,15 @@
   "controller": {
     "emailError": "E-posta zorunlu",
     "passwordError": "Şifre zorunlu ve en az 6 karakter olmalıdır"
+  },
+  "tab": {
+    "jobList": "İş Listesi",
+    "jobDetail": "İş Detayı",
+    "appliedJobs": "Başvurulan İşler",
+    "profile": "Profil"
+  },
+  "jobList": {
+    "welcome": "Hoşgeldiniz,",
+    "search": "Ara"
   }
 }

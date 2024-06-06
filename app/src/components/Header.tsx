@@ -5,7 +5,7 @@ import { scale, verticalScale } from "@/utils/WindowSize";
 import Icon, { IconTypes } from "./Icon";
 import { Text } from ".";
 
-interface HeaderProps {
+export interface HeaderProps {
   leftIcon?: IconTypes;
   rightIcon?: IconTypes;
   title: string;
@@ -23,7 +23,14 @@ const Header = ({
   return (
     <View style={styles.container}>
       <View style={styles.leftIcon}>
-        {leftIcon && <Icon icon={leftIcon} size={25} onPress={onLeftPress} />}
+        {leftIcon && (
+          <Icon
+            icon={leftIcon}
+            size={25}
+            onPress={onLeftPress}
+            color={colors.common.white}
+          />
+        )}
       </View>
       <View style={styles.title}>
         <Text

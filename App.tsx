@@ -17,9 +17,11 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import i18n from "@/locale";
 import Toast from "react-native-toast-message";
+import { useAuthStore } from "@/store/authStore";
 
 export default function App() {
   const [loaded, error] = useFonts(customFontstoLoad);
+  const hydrate = useAuthStore((state) => state.hydrate);
 
   React.useEffect(() => {
     if (error) throw error;
@@ -30,6 +32,10 @@ export default function App() {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
+
+  React.useEffect(() => {
+    hydrate();
+  }, []);
 
   if (!loaded) {
     return null;

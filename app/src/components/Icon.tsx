@@ -18,6 +18,11 @@ export const iconRegistry = {
   arrowLeft: require("assets/icons/arrowLeft.png"),
   eye: require("assets/icons/eye.png"),
   "eye-off": require("assets/icons/eyeOff.png"),
+  list: require("assets/icons/list.png"),
+  checkList: require("assets/icons/checklist.png"),
+  profile: require("assets/icons/profile.png"),
+  logout: require("assets/icons/logout.png"),
+  search: require("assets/icons/search.png"),
 };
 
 export interface IconProps {

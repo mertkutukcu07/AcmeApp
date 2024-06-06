@@ -1,7 +1,9 @@
 {
   "header": {
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "jobList": "Job List",
+    "jobDetail": "Job Detail"
   },
   "login": {
     "title": "Welcome,",
@@ -24,5 +26,15 @@
   "controller": {
     "emailError": "Email is required and must be a valid email",
     "passwordError": "Password is required"
+  },
+  "tab": {
+    "jobList": "Job List",
+    "jobDetail": "Job Detail",
+    "appliedJobs": "Applied Jobs",
+    "profile": "Profile"
+  },
+  "jobList": {
+    "welcome": "Welcome,",
+    "search": "Search"
   }
 }
