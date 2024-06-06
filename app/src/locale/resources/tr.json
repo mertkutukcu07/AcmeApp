@@ -1,0 +1,28 @@
+{
+  "header": {
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol"
+  },
+
+  "login": {
+    "title": "Hoşgeldin,",
+    "subtitle": "ACME'ye giriş yap",
+    "email": "E-posta",
+    "password": "Şifre",
+    "login": "Giriş Yap",
+    "doNotHaveAccount": "Hesabınız yok mu?",
+    "register": "Kayıt Ol"
+  },
+  "register": {
+    "title": "Hesap Oluştur",
+    "subtitle": "ACME'ye kayıt ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "register": "Kayıt Ol",
+    "alreadyHaveAccount": "Zaten hesabınız var mı?"
+  },
+  "controller": {
+    "emailError": "E-posta zorunlu",
+    "passwordError": "Şifre zorunlu ve en az 6 karakter olmalıdır"
+  }
+}

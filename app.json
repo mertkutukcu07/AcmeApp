@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "acme-app",
+    "slug": "acme-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/root/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/root/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#475BD8"
+    },
+
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/root/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/root/favicon.png"
+    },
+    "experiments": {
+      "tsconfigPaths": true
+    },
+    "plugins": ["expo-localization"]
+  }
+}

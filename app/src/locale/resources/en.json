@@ -1,0 +1,28 @@
+{
+  "header": {
+    "login": "Login",
+    "register": "Register"
+  },
+  "login": {
+    "title": "Welcome,",
+    "subtitle": "Login in to ACME",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "doNotHaveAccount": "Don't have an account?",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Welcome,",
+    "subtitle": "Register to ACME",
+    "email": "Email",
+    "password": "Password",
+    "register": "Register",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login"
+  },
+  "controller": {
+    "emailError": "Email is required and must be a valid email",
+    "passwordError": "Password is required"
+  }
+}
