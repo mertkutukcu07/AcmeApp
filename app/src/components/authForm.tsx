@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { RouteNames } from "@/navigation/RouteNames";
-import { Body, Button, Screen, Text, TextInput } from "@/components";
+import { Body, Button, Text, TextInput } from "@/components";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { colors } from "@/theme";
 import { verticalScale } from "@/utils/WindowSize";
