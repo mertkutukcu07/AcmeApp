@@ -9,3 +9,4 @@ export { default as AuthForm } from "./authForm";
 export { Message } from "./Toast";
 export { default as Loading } from "./Loading";
 export { default as JobsCard } from "./JobsCard";
+export { default as ProfileForm } from "./profileForm";

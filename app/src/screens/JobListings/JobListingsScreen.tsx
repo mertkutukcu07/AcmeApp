@@ -48,11 +48,13 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
       <Body>
         <View style={styles.userInfo}>
           <Text text={t("jobList.welcome")} fontFamily="regular" size="lg" />
-          <Text
-            text={`${userInfo.name} ${userInfo.surname}!`}
-            fontFamily="medium"
-            size="lg"
-          />
+          {userInfo?.name !== undefined && userInfo.surname !== undefined && (
+            <Text
+              text={`${userInfo.name} ${userInfo.surname}!`}
+              fontFamily="medium"
+              size="lg"
+            />
+          )}
         </View>
         <View style={styles.input}>
           <TextField
@@ -69,6 +71,7 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
           <FlatList
             scrollEnabled={!isFetchingNextPage}
             showsVerticalScrollIndicator={false}
+            nestedScrollEnabled
             data={data?.pages.flatMap((page) => page.data) || []}
             onEndReached={loadMore}
             onEndReachedThreshold={0.3}
@@ -120,7 +123,8 @@ const styles = StyleSheet.create({
     marginVertical: verticalScale(10),
   },
   listContainer: {
-    height: height - verticalScale(200),
+    height: height,
+    flex: 1,
   },
   footer: {
     marginVertical: verticalScale(10),

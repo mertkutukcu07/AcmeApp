@@ -27,21 +27,26 @@
     "alreadyHaveAccount": "Zaten hesabınız var mı?"
   },
   "controller": {
-    "emailError": "E-posta zorunlu",
-    "passwordError": "Şifre zorunlu ve en az 6 karakter olmalıdır",
-    "nameError": "İsim zorunlu",
-    "surnameError": "Soyisim zorunlu",
-    "phoneError": "Telefon numarası zorunlu",
-    "addressError": "Adres zorunlu",
-    "cityError": "Şehir zorunlu",
-    "countryError": "Ülke zorunlu",
-    "skillError": "Yetenek zorunlu",
-    "companyError": "Şirket adı zorunlu",
-    "positionError": "Pozisyon zorunlu",
-    "institutionError": "Kurum adı zorunlu",
-    "degreeError": "Derece zorunlu",
-    "languageError": "Dil zorunlu",
-    "levelError": "Seviye zorunlu"
+    "emailRequiredError": "E-posta zorunlu",
+    "emailInvalidError": "Geçerli bir e-posta adresi olmalıdır",
+    "passwordRequiredError": "Şifre zorunlu",
+    "passwordLengthError": "Şifre en az 6 karakter olmalıdır",
+    "nameRequiredError": "İsim zorunlu",
+    "nameLengthError": "İsim en az 2 karakter olmalıdır",
+    "surnameRequiredError": "Soyisim zorunlu",
+    "surnameLengthError": "Soyisim en az 2 karakter olmalıdır",
+    "phoneRequiredError": "Telefon numarası zorunlu",
+    "phoneLengthError": "Telefon numarası en az 10 karakter olmalıdır",
+    "addressRequiredError": "Adres zorunlu",
+    "addressLengthError": "Adres en az 2 karakter olmalıdır",
+    "cityRequiredError": "Şehir zorunlu",
+    "cityLengthError": "Şehir en az 2 karakter olmalıdır",
+    "countryRequiredError": "Ülke zorunlu",
+    "countryLengthError": "Ülke en az 2 karakter olmalıdır",
+    "profileImageRequiredError": "Profil resmi zorunlu",
+    "profileImageInvalidError": "Profil resmi geçerli bir URL olmalıdır",
+    "dateOfBirthRequiredError": "Doğum tarihi zorunlu",
+    "dateOfBirthLengthError": "Doğum tarihi en az 2 karakter olmalıdır"
   },
   "tab": {
     "jobList": "İş Listesi",
@@ -58,5 +63,25 @@
     "company": "Şirket",
     "salary": "Maaş",
     "applied": "Başvuruldu"
+  },
+  "appliedJobs": {
+    "noJobs": "Başvurulan iş bulunamadı"
+  },
+  "profile": {
+    "personalInfo": "Kişisel Bilgiler",
+    "name": "İsim",
+    "surname": "Soyisim",
+    "profileImage": "Profil Resmi",
+    "phone": "Telefon",
+    "dateOfBirth": "Doğum Tarihi",
+    "address": "Adres",
+    "country": "Ülke",
+    "city": "Şehir",
+    "profileUpdate": "Profil Güncelle",
+    "updateSuccess": "Profil başarıyla güncellendi"
+  },
+  "dateTimePicker": {
+    "confirm": "Onayla",
+    "cancel": "İptal"
   }
 }

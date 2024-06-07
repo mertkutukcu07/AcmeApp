@@ -11,6 +11,7 @@ import { StyleSheet } from "react-native";
 import { AppliedJobsScreen, ProfileScreen } from "@/screens";
 import { useLanguage } from "@/providers/LanguageProvider";
 import JobStack from "./JobStack";
+import { useAuthStore } from "@/store/authStore";
 
 export type TabStackParamList = {
   [RouteNames.JOBSTACK]: undefined;
@@ -25,6 +26,7 @@ const Tab = createBottomTabNavigator<TabStackParamList>();
 
 export default function TabStack() {
   const { t } = useLanguage();
+  const signOut = useAuthStore((state) => state.signOut);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -63,7 +65,13 @@ export default function TabStack() {
           tabBarIcon: ({ color, focused }) => (
             <Icon icon="profile" color={color} size={20} />
           ),
-          header: () => <Header title={t("header.profile")} />,
+          header: () => (
+            <Header
+              title={t("header.profile")}
+              leftIcon="logout"
+              onLeftPress={signOut}
+            />
+          ),
 
           tabBarLabel: t("tab.profile"),
         }}

@@ -23,21 +23,15 @@ export const useGetJobs = createInfiniteQuery<
 >({
   queryKey: [queryKeys.JOBS],
   fetcher: async (req: JobParams, { pageParam }) => {
-    const params: JobParams = {
-      page: pageParam,
-      perPage: 10,
-    };
+    let url = `api/jobs?page=${pageParam}&perPage=10`;
 
     if (req.search?.field && req.search?.query) {
-      params.search = {
-        field: req.search.field,
-        query: req.search.query,
-      };
+      url += `&search%5Bfield%5D=${encodeURIComponent(
+        req.search.field
+      )}&search%5Bquery%5D=${encodeURIComponent(req.search.query)}`;
     }
 
-    const { data } = await axiosInstance.get<JobResponse>(`api/jobs`, {
-      params,
-    });
+    const { data } = await axiosInstance.get<JobResponse>(url);
     return data;
   },
   getNextPageParam: (lastPage, allPages) => {
@@ -45,7 +39,6 @@ export const useGetJobs = createInfiniteQuery<
   },
   initialPageParam: 1,
 });
-
 export const useGetJobDetails = createQuery<
   Jobs,
   JobDetailsRequest,
