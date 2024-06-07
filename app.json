@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/root/icon.png",
     "userInterfaceStyle": "automatic",
+
     "splash": {
       "image": "./assets/root/splash.png",
       "resizeMode": "contain",
@@ -13,13 +14,15 @@
     },
 
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.acme.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/root/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.acme.app"
     },
     "web": {
       "favicon": "./assets/root/favicon.png"

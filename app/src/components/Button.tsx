@@ -13,6 +13,7 @@ import { moderateScale, scale, verticalScale } from "@/utils/WindowSize";
 import { colors } from "@/theme";
 
 interface ButtonProps {
+  testID?: string;
   text?: CustomTextProps["text"];
   style?: StyleProp<ViewStyle>;
   pressedStyle?: StyleProp<ViewStyle>;
@@ -26,6 +27,7 @@ interface ButtonProps {
 }
 
 const Button = ({
+  testID,
   text,
   style,
   pressedStyle,
@@ -39,6 +41,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      testID={testID}
       disabled={disabled || loading}
       onPress={onPress}
       style={[
