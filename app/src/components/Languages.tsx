@@ -23,7 +23,6 @@ const Languages = ({ lng, index }: LanguagesProps) => {
     changeLanguage(lng.value || "");
   };
 
-  console.log(language, "changeLanguage");
   return (
     <TouchableOpacity
       key={`${index}-lng`}

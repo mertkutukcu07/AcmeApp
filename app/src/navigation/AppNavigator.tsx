@@ -18,7 +18,6 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = () => {
   const status = useAuthStore((state) => state.status);
-  console.log(status, "status");
   return (
     <Stack.Navigator>
       {status === AuthStatus.signIn ? (
