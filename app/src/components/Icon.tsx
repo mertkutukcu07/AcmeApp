@@ -23,6 +23,8 @@ export const iconRegistry = {
   profile: require("assets/icons/profile.png"),
   logout: require("assets/icons/logout.png"),
   search: require("assets/icons/search.png"),
+  trFlag: require("assets/icons/trFlag.png"),
+  enFlag: require("assets/icons/enFlag.png"),
 };
 
 export interface IconProps {

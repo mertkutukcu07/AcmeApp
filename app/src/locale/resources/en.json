@@ -77,10 +77,15 @@
     "country": "Country",
     "city": "City",
     "profileUpdate": "Profile Update",
-    "updateSuccess": "Profile updated successfully"
+    "updateSuccess": "Profile updated successfully",
+    "language": "Language"
   },
   "dateTimePicker": {
     "confirm": "Confirm",
     "cancel": "Cancel"
+  },
+  "language": {
+    "english": "English",
+    "turkish": "Turkish"
   }
 }

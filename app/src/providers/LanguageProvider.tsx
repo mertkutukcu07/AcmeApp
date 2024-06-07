@@ -1,8 +1,6 @@
-import type React from "react";
-import { createContext, useState, useEffect, useContext } from "react";
-import { useLocales } from "expo-localization";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { loadString, saveString } from "@/utils/storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface LanguageContextType {
   language: string | null;
@@ -20,25 +18,28 @@ interface LanguageProps {
 
 const LanguageProvider: React.FC<LanguageProps> = ({ children }) => {
   const [language, setLanguage] = useState<string | null>(null);
-  const { t } = useTranslation();
-  const [{ languageCode: defaultLanguage }] = useLocales();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     const fetchLanguage = async () => {
-      const storedLanguage = await loadString("language");
+      const storedLanguage = await AsyncStorage.getItem("language");
       if (storedLanguage) {
         setLanguage(storedLanguage);
+        i18n.changeLanguage(storedLanguage);
       } else {
+        const defaultLanguage = i18n.language;
         setLanguage(defaultLanguage);
+        i18n.changeLanguage(defaultLanguage);
       }
     };
 
     fetchLanguage();
-  }, [defaultLanguage]);
+  }, []);
 
   const changeLanguage = async (newLanguage: string) => {
     setLanguage(newLanguage);
-    await saveString("language", newLanguage);
+    await AsyncStorage.setItem("language", newLanguage);
+    i18n.changeLanguage(newLanguage);
   };
 
   const contextValue: LanguageContextType = {

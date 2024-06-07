@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Body, Button, Text, TextInput } from "@/components";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Body, Button, Languages, Text, TextInput } from "@/components";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { verticalScale } from "@/utils/WindowSize";
 import { Controller, useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import { schemes } from "@/schemes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import moment from "moment";
 import { UserInfoResponse } from "@/api/services/auth/types";
+import { language } from "@/mocks/language";
 
 interface ProfileFormProps {
   onSubmit: (data: any) => void;
@@ -102,7 +103,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             />
           )}
         />
-
         <Controller
           control={control}
           name="phone"
@@ -196,6 +196,15 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
           )}
         />
       </View>
+      <View style={styles.sectionHeader}>
+        <Text text={t("profile.language")} fontFamily="medium" size="lg" />
+      </View>
+      <FlatList
+        data={language(t)}
+        keyExtractor={(item, index) => `${index}-languages`}
+        contentContainerStyle={styles.languages}
+        renderItem={({ item, index }) => <Languages lng={item} index={index} />}
+      />
       <Button
         text={t("profile.profileUpdate")}
         style={styles.button}
@@ -218,5 +227,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: verticalScale(20),
+  },
+  languages: {
+    gap: verticalScale(10),
   },
 });
