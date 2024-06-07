@@ -48,3 +48,5 @@ appId: com.acme.app
 - tapOn: "Apply"
 - tapOn: "Applied Jobs, tab, 2 of 3"
 - tapOn: "Chief Research Supervisor Company Gerhold - Gulgowski Salary 22918 Applied"
+- tapOn:
+    point: "9%,11%"
