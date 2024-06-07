@@ -8,4 +8,5 @@ export enum queryKeys {
   USER_INFO = "userInfo",
   APPLIED_JOBS = "appliedJobs",
   PROFILE = "profile",
+  PROFILE_UPDATE = "profileUpdate",
 }

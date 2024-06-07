@@ -10,18 +10,14 @@ export interface AuthResponse {
 
 export interface UserInfoResponse {
   appliedJobs: string[];
-  skills: string[];
   profileImage: string;
   name: string;
   phone: string;
   id: string;
-  languages: Language[];
   email: string;
-  education: Education[];
   dateOfBirth: string;
   surname: string;
   address: Address;
-  experiences: Experience[];
 }
 
 export interface Language {

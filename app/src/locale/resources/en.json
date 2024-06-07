@@ -26,21 +26,26 @@
     "login": "Login"
   },
   "controller": {
-    "emailError": "Email is required and must be a valid email",
-    "passwordError": "Password is required",
-    "nameError": "Name is required",
-    "surnameError": "Surname is required",
-    "phoneError": "Phone is required",
-    "addressError": "Address is required",
-    "cityError": "City is required",
-    "countryError": "Country is required",
-    "skillError": "Skills is required",
-    "companyError": "Company is required",
-    "positionError": "Position is required",
-    "institutionError": "Institution is required",
-    "degreeError": "Degree is required",
-    "languageError": "Language is required",
-    "levelError": "Level is required"
+    "emailRequiredError": "Email is required",
+    "emailInvalidError": "Email must be a valid email",
+    "passwordRequiredError": "Password is required",
+    "passwordLengthError": "Password must be at least 6 characters",
+    "nameRequiredError": "Name is required",
+    "nameLengthError": "Name must be at least 2 characters",
+    "surnameRequiredError": "Surname is required",
+    "surnameLengthError": "Surname must be at least 2 characters",
+    "phoneRequiredError": "Phone is required",
+    "phoneLengthError": "Phone must be at least 10 characters",
+    "addressRequiredError": "Address is required",
+    "addressLengthError": "Address must be at least 2 characters",
+    "cityRequiredError": "City is required",
+    "cityLengthError": "City must be at least 2 characters",
+    "countryRequiredError": "Country is required",
+    "countryLengthError": "Country must be at least 2 characters",
+    "profileImageRequiredError": "Profile Image is required",
+    "profileImageInvalidError": "Profile Image must be a valid URL",
+    "dateOfBirthRequiredError": "Date of Birth is required",
+    "dateOfBirthLengthError": "Date of Birth must be at least 2 characters"
   },
   "tab": {
     "jobList": "Job List",
@@ -57,5 +62,25 @@
     "company": "Company",
     "salary": "Salary",
     "applied": "Applied"
+  },
+  "appliedJobs": {
+    "noJobs": "No jobs found"
+  },
+  "profile": {
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "surname": "Surname",
+    "profileImage": "Profile Image",
+    "phone": "Phone",
+    "dateOfBirth": "Date of Birth",
+    "address": "Address",
+    "country": "Country",
+    "city": "City",
+    "profileUpdate": "Profile Update",
+    "updateSuccess": "Profile updated successfully"
+  },
+  "dateTimePicker": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   }
 }
