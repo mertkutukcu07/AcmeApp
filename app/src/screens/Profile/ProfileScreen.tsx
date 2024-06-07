@@ -1,16 +1,21 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
-import { Message, ProfileForm, Screen } from "@/components";
+import {
+  DateTimePicker,
+  Message,
+  ProfileForm,
+  Screen,
+  Text,
+} from "@/components";
 import { TabStackScreenProps } from "@/navigation/stacks/TabStack";
 import { RouteNames } from "@/navigation/RouteNames";
 import { useLanguage } from "@/providers/LanguageProvider";
-import DateTimePicker from "@/components/DateTimePicker";
 import moment from "moment";
 import { useAuthStore } from "@/store/authStore";
 import { useUpdateProfile } from "@/api/services/profile";
 import { ProfileUpdateData } from "@/api/services/profile/types";
-import { useUserInfo } from "@/api/services/auth";
 import { goBack } from "@/navigation/navigationUtilities";
+import { verticalScale } from "@/utils/WindowSize";
 
 interface ProfileScreenProps extends TabStackScreenProps<RouteNames.PROFILE> {}
 
@@ -20,7 +25,6 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const [isVisible, setDatePickerVisibility] = React.useState(false);
   const userInfo = useAuthStore((state) => state.userInfo);
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
-
   const { mutateAsync: updateProfile, isPending } = useUpdateProfile({
     onError: (error) => {
       Message({
@@ -62,6 +66,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
         userInfo={userInfo}
         isPending={isPending}
       />
+
       {isVisible && (
         <DateTimePicker
           isVisible={isVisible}
@@ -79,4 +84,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
 
 export default ProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  sectionHeader: {
+    marginVertical: verticalScale(20),
+  },
+});

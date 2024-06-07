@@ -17,24 +17,6 @@ export async function saveString(key: string, value: string): Promise<boolean> {
   }
 }
 
-export async function load(key: string): Promise<unknown | null> {
-  try {
-    const almostThere = await AsyncStorage.getItem(key);
-    return JSON.parse(almostThere ?? "");
-  } catch {
-    return null;
-  }
-}
-
-export async function save(key: string, value: unknown): Promise<boolean> {
-  try {
-    await AsyncStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 export async function remove(key: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(key);

@@ -14,7 +14,7 @@ import { AppNavigator } from "./app/src/navigation/AppNavigator";
 import { APIProvider, LanguageProvider } from "@/providers";
 import { customFontstoLoad } from "@/theme/typography";
 import { I18nextProvider } from "react-i18next";
-import i18next from "i18next";
+
 import i18n from "@/locale";
 import Toast from "react-native-toast-message";
 import { useAuthStore } from "@/store/authStore";

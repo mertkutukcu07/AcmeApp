@@ -78,10 +78,15 @@
     "country": "Ülke",
     "city": "Şehir",
     "profileUpdate": "Profil Güncelle",
-    "updateSuccess": "Profil başarıyla güncellendi"
+    "updateSuccess": "Profil başarıyla güncellendi",
+    "language": "Dil"
   },
   "dateTimePicker": {
     "confirm": "Onayla",
     "cancel": "İptal"
+  },
+  "language": {
+    "english": "İngilizce",
+    "turkish": "Türkçe"
   }
 }
