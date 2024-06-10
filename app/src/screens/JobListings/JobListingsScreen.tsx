@@ -13,7 +13,6 @@ interface JobListingsScreenProps
   extends JobStackScreenProps<RouteNames.JOBLISTINGS> {}
 const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
   const userInfo = useAuthStore((state) => state.userInfo);
-  const appliedJobs = useAuthStore((state) => state.userInfo.appliedJobs);
   const loading = useAuthStore((state) => state.loading);
   const [searchText, setSearchText] = React.useState<string>("");
   const [searchQuery, setSearchQuery] = React.useState<string>("");
@@ -24,23 +23,25 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
     []
   );
   const { t } = useLanguage();
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetJobs({
-    variables: {
-      pageParam: 1,
-      search: {
-        field: "companyName",
-        query: searchQuery,
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useGetJobs({
+      variables: {
+        pageParam: 1,
+        search: {
+          field: "companyName",
+          query: searchQuery,
+        },
       },
-    },
-  });
+      enabled: !loading,
+    });
 
   const loadMore = () => {
     if (hasNextPage) {
       fetchNextPage();
     }
   };
-
-  if (loading) {
+  console.log(loading, "loading");
+  if (loading || isLoading) {
     return <Loading />;
   }
   return (
@@ -69,12 +70,12 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
         </View>
         <View style={styles.listContainer}>
           <FlatList
-            scrollEnabled={!isFetchingNextPage}
             showsVerticalScrollIndicator={false}
+            scrollEnabled={!isFetchingNextPage}
             nestedScrollEnabled
             data={data?.pages.flatMap((page) => page.data) || []}
             onEndReached={loadMore}
-            onEndReachedThreshold={0.3}
+            onEndReachedThreshold={0.5}
             contentContainerStyle={styles.jobsContainer}
             ListEmptyComponent={() => (
               <Text
@@ -84,20 +85,16 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
                 style={styles.notFound}
               />
             )}
-            ListFooterComponent={() => (
-              <View style={styles.footer}>
-                <ActivityIndicator
-                  animating={isFetchingNextPage}
-                  size="large"
-                  color="#000"
-                />
-              </View>
-            )}
+            ListFooterComponent={() =>
+              isFetchingNextPage ? (
+                <View style={styles.footer}>
+                  <ActivityIndicator size="large" color="#000" />
+                </View>
+              ) : null
+            }
             keyExtractor={(item, index) => `${index}-jobs`}
             renderItem={({ item, index }) => {
-              return (
-                <JobsCard job={item} index={index} appliedJobs={appliedJobs} />
-              );
+              return <JobsCard job={item} index={index} />;
             }}
           />
         </View>
@@ -124,7 +121,6 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     height: height,
-    flex: 1,
   },
   footer: {
     marginVertical: verticalScale(10),

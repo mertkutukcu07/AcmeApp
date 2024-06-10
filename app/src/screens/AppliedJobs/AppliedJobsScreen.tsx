@@ -42,9 +42,7 @@ const AppliedJobsScreen: React.FC<AppliedJobsScreenProps> = () => {
             </View>
           )}
           renderItem={({ item, index }) => {
-            return (
-              <JobsCard job={item} index={index} appliedJobs={appliedJobs} />
-            );
+            return <JobsCard job={item} index={index} />;
           }}
         />
       </Body>

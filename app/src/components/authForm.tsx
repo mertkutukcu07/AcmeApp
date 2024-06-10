@@ -108,6 +108,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         />
       </View>
       <Button
+        testID="authFormButton"
         loading={isPending}
         text={localizedScheme.login}
         style={styles.button}

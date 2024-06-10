@@ -27,16 +27,21 @@ export const useAuthStore = create<AuthStore>((set) => ({
   setLoading: (loading: boolean) => set({ loading }),
 
   signIn: async (accessToken: string, refreshToken: string) => {
-    await saveString("accessToken", accessToken);
-    await saveString("refreshToken", refreshToken);
-    set({ accessToken, refreshToken, status: AuthStatus.signIn });
-    axiosInstance.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${accessToken}`;
-    set({ loading: true });
-    const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
-    set({ userInfo: data });
-    set({ loading: false });
+    try {
+      await saveString("accessToken", accessToken);
+      await saveString("refreshToken", refreshToken);
+      set({ accessToken, refreshToken, status: AuthStatus.signIn });
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+      set({ loading: true });
+      const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
+      set({ userInfo: data });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      set({ loading: false });
+    }
   },
 
   signOut: async () => {
@@ -45,21 +50,26 @@ export const useAuthStore = create<AuthStore>((set) => ({
     axiosInstance.defaults.headers.common["Authorization"] = "";
   },
   hydrate: async () => {
-    const [accessToken, refreshToken] = await Promise.all([
-      loadString("accessToken"),
-      loadString("refreshToken"),
-    ]);
-    if (accessToken && refreshToken) {
-      set({ accessToken, refreshToken, status: AuthStatus.signIn });
-      axiosInstance.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${accessToken}`;
-      set({ loading: true });
-      const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
-      set({ userInfo: data });
+    try {
+      const [accessToken, refreshToken] = await Promise.all([
+        loadString("accessToken"),
+        loadString("refreshToken"),
+      ]);
+      if (accessToken && refreshToken) {
+        set({ accessToken, refreshToken, status: AuthStatus.signIn });
+        axiosInstance.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        set({ loading: true });
+        const { data } = await axiosInstance.get<UserInfoResponse>("api/user");
+        set({ userInfo: data });
+      } else {
+        set({ status: AuthStatus.signOut });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
       set({ loading: false });
-    } else {
-      set({ status: AuthStatus.signOut });
     }
   },
 }));

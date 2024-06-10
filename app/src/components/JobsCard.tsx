@@ -8,14 +8,15 @@ import { colors } from "@/theme";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { navigate } from "@/navigation/navigationUtilities";
 import { RouteNames } from "@/navigation/RouteNames";
+import { useAuthStore } from "@/store/authStore";
 
 interface JobsCardProps {
   job: Jobs;
   index: number;
-  appliedJobs?: string[];
 }
 
-const JobsCard = ({ job, index, appliedJobs }: JobsCardProps) => {
+const JobsCard = ({ job, index }: JobsCardProps) => {
+  const appliedJobs = useAuthStore((state) => state.userInfo.appliedJobs);
   const { t } = useLanguage();
   const isApplied = React.useMemo(() => {
     if (appliedJobs) {
@@ -24,15 +25,15 @@ const JobsCard = ({ job, index, appliedJobs }: JobsCardProps) => {
     return false;
   }, [appliedJobs, job.id]);
 
+  const handleDetail = React.useCallback(() => {
+    if (job && job.id)
+      navigate(RouteNames.JOBDETAIL, {
+        jobId: job.id,
+      });
+  }, [job, job?.id]);
+
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigate(RouteNames.JOBDETAIL, {
-          jobId: job.id,
-        })
-      }
-      key={`${index}-job`}
-    >
+    <TouchableOpacity onPress={handleDetail} key={`${index}-job`}>
       <Image source={Images.jobsCard} style={styles.cardImg} />
       <View style={styles.card}>
         <View style={styles.detail}>
