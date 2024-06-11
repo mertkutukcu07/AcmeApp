@@ -1,12 +1,6 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import {
-  DateTimePicker,
-  Message,
-  ProfileForm,
-  Screen,
-  Text,
-} from "@/components";
+import { DateTimePicker, Message, ProfileForm, Screen } from "@/components";
 import { TabStackScreenProps } from "@/navigation/stacks/TabStack";
 import { RouteNames } from "@/navigation/RouteNames";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -57,6 +51,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     });
   };
 
+  const onConfirm = (date: Date) => {
+    setDate(date);
+    setDatePickerVisibility(false);
+  };
+
   return (
     <Screen edges={[]} preset="scroll">
       <ProfileForm
@@ -71,9 +70,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
         <DateTimePicker
           isVisible={isVisible}
           setDatePickerVisibility={setDatePickerVisibility}
-          onConfirm={(date) => {
-            setDate(date);
-            setDatePickerVisibility(false);
+          onConfirm={(date: Date) => {
+            onConfirm(date);
           }}
           mode="date"
         />

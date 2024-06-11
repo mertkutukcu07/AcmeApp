@@ -4,7 +4,6 @@ import { queryKeys } from "@/api/keys";
 import { axiosInstance } from "@/api/axios/api";
 import { AxiosError } from "axios";
 import { Message } from "@/components";
-import { useAuthStore } from "@/store/authStore";
 
 export const useLogin = createMutation<AuthResponse, AuthRequest, AxiosError>({
   mutationKey: [queryKeys.LOGIN],

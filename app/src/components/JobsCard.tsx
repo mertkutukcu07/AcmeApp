@@ -25,12 +25,12 @@ const JobsCard = ({ job, index }: JobsCardProps) => {
     return false;
   }, [appliedJobs, job.id]);
 
-  const handleDetail = React.useCallback(() => {
+  const handleDetail = () => {
     if (job && job.id)
       navigate(RouteNames.JOBDETAIL, {
         jobId: job.id,
       });
-  }, [job, job?.id]);
+  };
 
   return (
     <TouchableOpacity onPress={handleDetail} key={`${index}-job`}>

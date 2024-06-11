@@ -40,7 +40,12 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
       fetchNextPage();
     }
   };
-  console.log(loading, "loading");
+
+  const changeText = (text: string) => {
+    setSearchText(text);
+    debouncedSearchTerm(text);
+  };
+
   if (loading || isLoading) {
     return <Loading />;
   }
@@ -60,10 +65,7 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
         <View style={styles.input}>
           <TextField
             value={searchText}
-            onChangeText={(text) => {
-              setSearchText(text);
-              debouncedSearchTerm(text);
-            }}
+            onChangeText={(text) => changeText(text)}
             placeholder={t("jobList.search")}
             leftIcon="search"
           />
@@ -71,7 +73,7 @@ const JobListingsScreen: React.FC<JobListingsScreenProps> = () => {
         <View style={styles.listContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            scrollEnabled={!isFetchingNextPage}
+            scrollEnabled={!isFetchingNextPage && !isLoading}
             nestedScrollEnabled
             data={data?.pages.flatMap((page) => page.data) || []}
             onEndReached={loadMore}
