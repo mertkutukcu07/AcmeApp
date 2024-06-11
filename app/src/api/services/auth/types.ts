@@ -20,27 +20,8 @@ export interface UserInfoResponse {
   address: Address;
 }
 
-export interface Language {
-  level: string;
-  language: string;
-}
-
-export interface Education {
-  degree: string;
-  institution: string;
-  endDate: string;
-  startDate: string;
-}
-
 export interface Address {
   city: string;
   country: string;
   details: string;
-}
-
-export interface Experience {
-  company: string;
-  position: string;
-  endDate: string;
-  startDate: string;
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { RouteNames } from "@/navigation/RouteNames";
 import { Body, Button, Text, TextInput } from "@/components";
@@ -33,9 +33,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
     resolver: zodResolver(schema),
   });
 
-  const handleNavigation = useCallback(() => {
+  const handleNavigation = () => {
     navigate(isLogin ? RouteNames.REGISTER : RouteNames.LOGIN);
-  }, [isLogin]);
+  };
 
   const localizedScheme = useMemo(
     () => ({

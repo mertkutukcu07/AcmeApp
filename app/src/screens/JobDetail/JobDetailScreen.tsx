@@ -52,9 +52,7 @@ const JobDetailScreen: React.FC<JobDetailScreenProps> = ({ route }) => {
         queryClient.invalidateQueries({
           queryKey: [queryKeys.JOBS],
         });
-
         await userInfo();
-
         goBack();
       },
     });
@@ -67,16 +65,13 @@ const JobDetailScreen: React.FC<JobDetailScreenProps> = ({ route }) => {
 
   const disabled = isPending || isWithdrawPending || userInfoPending;
 
-  const handleApply = React.useCallback(
-    (type: string) => {
-      if (type === "apply") {
-        applyJob({ id: jobId });
-      } else {
-        withdrawJob({ id: jobId });
-      }
-    },
-    [applyJob, jobId, withdrawJob]
-  );
+  const handleApply = async (type: "apply" | "withdraw") => {
+    if (type === "apply") {
+      applyJob({ id: jobId });
+    } else {
+      withdrawJob({ id: jobId });
+    }
+  };
 
   const isApplied = React.useMemo(() => {
     if (appliedJobs) {
